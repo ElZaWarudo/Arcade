@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "914642375069",
+    "firebase_url": "https://arcade-c51a7.firebaseio.com",
+    "project_id": "arcade-c51a7",
+    "storage_bucket": "arcade-c51a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914642375069:android:a8c5f2261b736662439f74",
+        "android_client_info": {
+          "package_name": "arcadeECMG.arcade"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "914642375069-8ito1no3fs6q6nva3evgghggmd0jvqk0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "arcadeECMG.arcade",
+            "certificate_hash": "ea796067d6c61a54bbcfb2b2df20f09ed7ea979b"
+          }
+        },
+        {
+          "client_id": "914642375069-7dv757uikbbqslmo3n3m8b9njeas7hhu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiuFatNWDGCoAWaSG8_VYZ4r2WGw9KNSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "914642375069-7dv757uikbbqslmo3n3m8b9njeas7hhu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

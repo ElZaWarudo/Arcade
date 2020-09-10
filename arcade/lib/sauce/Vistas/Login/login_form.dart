@@ -1,3 +1,4 @@
+import 'package:arcade/sauce/Vistas/Login/bot_logueo/create.dart';
 import 'package:arcade/sauce/bloc/autenticacion/aut_event.dart';
 import 'package:arcade/sauce/bloc/login/log_bloc.dart';
 import 'package:arcade/sauce/bloc/login/log_event.dart';
@@ -10,6 +11,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'bot_logueo/google.dart';
 import 'bot_logueo/login.dart';
+
 class LoginForm extends StatefulWidget {
   final UserRepo _userRepo;
 
@@ -85,14 +87,14 @@ class _LoginFormState extends State<LoginForm> {
           child: Form(
             child: ListView(children: [
               Image.asset(
-                'lib/images/vintagearcade.jpg',
+                'lib/assets/vintagearcade.jpg',
                 height: 300.0,
               ),
-              Padding (
+              Padding(
                 padding: const EdgeInsets.only(top: 15),
                 child: GoogleLoginButton(),
               ),
-              Padding (
+              Padding(
                 padding: const EdgeInsets.only(top: 15),
                 child: RaisedButton(
                   color: Colors.indigo,
@@ -110,7 +112,7 @@ class _LoginFormState extends State<LoginForm> {
                   onPressed: () {},
                 ),
               ),
-              Padding (
+              Padding(
                 padding: const EdgeInsets.only(top: 40),
                 child: TextFormField(
                   controller: _emailController,
@@ -118,12 +120,12 @@ class _LoginFormState extends State<LoginForm> {
                   keyboardType: TextInputType.emailAddress,
                   autovalidate: true,
                   autocorrect: false,
-                  validator: (_){
-                    return !state.isEmailValid? 'Correo invalido': null;
+                  validator: (_) {
+                    return !state.isEmailValid ? 'Correo invalido' : null;
                   },
                 ),
               ),
-              Padding (
+              Padding(
                 padding: const EdgeInsets.only(top: 30),
                 child: TextFormField(
                   controller: _passwordController,
@@ -132,36 +134,31 @@ class _LoginFormState extends State<LoginForm> {
                   keyboardType: TextInputType.emailAddress,
                   autovalidate: true,
                   autocorrect: false,
-                  validator: (_){
-                    return !state.isPasswordValid? 'Contraseña invalida': null;
+                  validator: (_) {
+                    return !state.isPasswordValid
+                        ? 'Contraseña invalida'
+                        : null;
                   },
                 ),
               ),
-              Padding (
+              Padding(
                 padding: const EdgeInsets.only(top: 15),
-                child: Text('¿Olvidaste tu contraseña?',
+                child: Text(
+                  '¿Olvidaste tu contraseña?',
                   textAlign: TextAlign.right,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              Padding (
+              Padding(
                 padding: const EdgeInsets.only(top: 30),
-                child: RaisedButton(
-                  child: LoginButton(
-                    onPressed: isLoginButtonEnabled(state)
-                        ? _onFormSubmitted: null,
-                  )
+                child: LoginButton(
+                  onPressed:
+                      isLoginButtonEnabled(state) ? _onFormSubmitted : null,
                 ),
               ),
-              Padding (
-                padding: const EdgeInsets.only(top: 15, bottom: 40),
-                child: RaisedButton(
-                  child: Text('Crea tu cuenta'),
-                  color: Colors.deepPurple,
-                  textColor: Colors.white,
-                  onPressed: () {},
-                ),
-              ),
+              Padding(
+                  padding: const EdgeInsets.only(top: 15, bottom: 40),
+                  child: CreateAccount(userRepo: _userRepo)),
             ]),
           ),
         );
@@ -185,11 +182,7 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void _onFormSubmitted() {
-    _loginBloc.add(
-        LoginWithCredentialsPressed(
-            email: _emailController.text,
-            password: _passwordController.text
-        )
-    );
+    _loginBloc.add(LoginWithCredentialsPressed(
+        email: _emailController.text, password: _passwordController.text));
   }
 }

@@ -1,33 +1,53 @@
+import 'package:arcade/sauce/Vistas/Login/Splash.dart';
+import 'file:///C:/Users/Mayor/Documents/GitHub/Arcade/arcade/lib/sauce/Vistas/Main/home.dart';
+import 'file:///C:/Users/Mayor/Documents/GitHub/Arcade/arcade/lib/sauce/Vistas/Login/login_screen.dart';
+import 'package:arcade/sauce/bloc/autenticacion/aut_bloc.dart';
+import 'package:arcade/sauce/bloc/autenticacion/aut_event.dart';
+import 'package:arcade/sauce/bloc/autenticacion/aut_state.dart';
+import 'package:arcade/sauce/bloc/delegate.dart';
+import 'package:arcade/sauce/repository/User_repo.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/Mayor/Documents/GitHub/Arcade/arcade/lib/sauce/Vistas/login.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(MyApp());
+Future <void>main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  Bloc.observer = SimpleObserver();
+  final UserRepo userRepo = UserRepo();
+  var app = BlocProvider(
+    create: (context) => AutBloc(userRepo: userRepo)
+      ..add(AppStarted()),
+    child: App(userRepo: userRepo),
+  );
+  runApp(app);
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class App extends StatelessWidget {
+  final UserRepo _userRepo;
+
+  App({Key key, @required UserRepo userRepo})
+      : assert (userRepo != null),
+        _userRepo = userRepo,
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Arcade App',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+      home: BlocBuilder<AutBloc, AutState>(
+        builder: (context, state) {
+          if (state is NoInicializado) {
+            return SplashScreen();
+          }
+          if (state is Autenticado) {
+            return HomeScreen(name: state.displayName,);
+          }
+          if (state is NoAutenticado) {
+            return LoginScreen(userRepo: _userRepo,);
+          }
+          return Container(color: Colors.orange);
+        },
       ),
-      home: Login(),
     );
   }
 }

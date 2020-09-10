@@ -38,6 +38,8 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+  assets:
+    - lib/assets/vintagearcade.jpg
 
   uses-material-design: true
 
