@@ -1,10 +1,10 @@
 import 'package:arcade/sauce/Vistas/Login/Splash.dart';
-import 'file:///C:/Users/Mayor/Documents/GitHub/Arcade/arcade/lib/sauce/Vistas/Main/home.dart';
+import 'file:///C:/Users/Mayor/Documents/GitHub/Arcade/arcade/lib/sauce/Vistas/Home/home.dart';
 import 'file:///C:/Users/Mayor/Documents/GitHub/Arcade/arcade/lib/sauce/Vistas/Login/login_screen.dart';
 import 'package:arcade/sauce/bloc/autenticacion/aut_bloc.dart';
 import 'package:arcade/sauce/bloc/autenticacion/aut_event.dart';
 import 'package:arcade/sauce/bloc/autenticacion/aut_state.dart';
-import 'package:arcade/sauce/bloc/delegate.dart';
+import 'file:///C:/Users/Mayor/Documents/GitHub/Arcade/arcade/lib/sauce/bloc/delegates/reg_delegate.dart';
 import 'package:arcade/sauce/repository/User_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,7 +40,7 @@ class App extends StatelessWidget {
             return SplashScreen();
           }
           if (state is Autenticado) {
-            return HomeScreen(name: state.displayName,);
+            return Home(name: state.displayName);
           }
           if (state is NoAutenticado) {
             return LoginScreen(userRepo: _userRepo,);

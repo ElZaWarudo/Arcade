@@ -87,7 +87,7 @@ class _LoginFormState extends State<LoginForm> {
           child: Form(
             child: ListView(children: [
               Image.asset(
-                'lib/assets/vintagearcade.jpg',
+                'lib/assets/vintagearcade.png',
                 height: 300.0,
               ),
               Padding(
