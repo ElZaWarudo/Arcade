@@ -1,3 +1,5 @@
+import 'package:arcade/sauce/bloc/autenticacion/aut_event.dart';
+import 'package:arcade/sauce/bloc/autenticacion/bloc.dart';
 import 'package:arcade/sauce/bloc/juegos/jue_bloc.dart';
 import 'package:arcade/sauce/repository/Juego_repo.dart';
 import 'package:arcade/sauce/vistas/Home/Tarjetas.dart';
@@ -29,8 +31,8 @@ class Home extends StatelessWidget {
             padding: EdgeInsets.zero,
             children: <Widget>[
               UserAccountsDrawerHeader(
-                accountName: Text(name),
-                accountEmail: Text('sapoperro@sapoperro.com'),
+                accountName: Text('alto capo'),
+                accountEmail: Text(name),
                 decoration: BoxDecoration(color: Colors.deepPurple),
                 currentAccountPicture:
                     CircleAvatar(backgroundColor: Colors.white),
@@ -43,16 +45,18 @@ class Home extends StatelessWidget {
               ),
               ListTile(
                 title: Text('Cerrar sesion'),
+                onTap: (){
+                  BlocProvider.of<AutBloc>(context).add(LoggedOut());
+                }
               ),
             ],
           ),
         ),
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Tarjetas(),
+          child: Tarjetas(name),
         ),
       ),
     );
   }
 }
-//BlocProvider.of<AutBloc>(context).add(LoggedOut());

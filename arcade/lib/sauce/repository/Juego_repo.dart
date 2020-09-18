@@ -5,7 +5,7 @@ class JueRepo{
   final databaseReference=FirebaseFirestore.instance;
 
   Stream<List<Juego>> getJuegos(){
-    return databaseReference.collection("juegos").snapshots()
+    return databaseReference.collection("Juegos").snapshots()
         .map((snapshot){
           return snapshot.docs.map((doc) => Juego.fromSnapshot(doc)).toList();
     });

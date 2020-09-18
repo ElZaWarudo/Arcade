@@ -7,6 +7,7 @@ import 'package:arcade/sauce/bloc/autenticacion/aut_state.dart';
 import 'file:///C:/Users/Mayor/Documents/GitHub/Arcade/arcade/lib/sauce/bloc/delegates/reg_delegate.dart';
 import 'package:arcade/sauce/repository/User_repo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -20,6 +21,7 @@ Future <void>main() async{
       ..add(AppStarted()),
     child: App(userRepo: userRepo),
   );
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(app);
 }
 

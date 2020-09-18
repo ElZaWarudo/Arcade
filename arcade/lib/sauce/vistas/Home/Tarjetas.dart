@@ -1,16 +1,28 @@
 import 'package:arcade/sauce/bloc/juegos/jue_bloc.dart';
 import 'package:arcade/sauce/models/juegos.dart';
+import 'package:arcade/sauce/vistas/WebGame.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Tarjetas extends StatefulWidget {
+  String Nombre;
+
+  Tarjetas(this.Nombre);
+
   @override
-  _TarjetasState createState() => _TarjetasState();
+  _TarjetasState createState() => _TarjetasState(Nombre);
 }
 
 class _TarjetasState extends State<Tarjetas> {
+  String Nombre;
   List<Juego> juegosList = [];
+
+
+  _TarjetasState(this.Nombre);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<JueBloc, JueState>(builder: (context, state) {
@@ -32,25 +44,27 @@ class _TarjetasState extends State<Tarjetas> {
       if (state is GamesLoaded) {
         juegosList = state.juegos;
         return Container(
-            child: juegosList.length == 0
-                ? Center(
-                    child: Text('Aun no hay juegos'),
-                  )
-                : ListView.builder(
-                    itemCount: juegosList.length,
-                    itemBuilder: (_, index) {
-                      return GameUI(
+          child: juegosList.length == 0
+              ? Center(
+                  child: Text('Aun no hay juegos'),
+                )
+              : ListView.builder(
+                  itemCount: juegosList.length,
+                  itemBuilder: (_, index) {
+                    return GameUI(
                         juegosList[index].nombre,
                         juegosList[index].url,
                         juegosList[index].descripcion,
-                      );
-                    }));
+                        juegosList[index].UrlJuego);
+                  },
+                ),
+        );
       }
       return Container();
     });
   }
 
-  Widget GameUI(String nombre, String imagen, String descripcion) {
+  Widget GameUI(String nombre, String imagen, String descripcion, String Url) {
     return Card(
       elevation: 10.0,
       margin: EdgeInsets.all(14.0),
@@ -84,14 +98,17 @@ class _TarjetasState extends State<Tarjetas> {
             Align(
               alignment: Alignment.centerLeft,
               child: RaisedButton(
-                  child: Text('Jugar'),
-                  color: Colors.deepPurple,
-                  textColor: Colors.white,
-                  onPressed: () {
-
-                  }
+                child: Text('Jugar'),
+                color: Colors.deepPurple,
+                textColor: Colors.white,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WebGame(Url, Nombre)),
+                  );
+                },
               ),
-            )
+            ),
           ],
         ),
       ),
