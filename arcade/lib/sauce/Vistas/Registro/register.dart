@@ -55,7 +55,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     content: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text('Registering'),
+                        Text('Registrando...'),
                         CircularProgressIndicator()
                       ],
                     ),
@@ -77,7 +77,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     content: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text('Registration Failure'),
+                        Text('Fallo al registrar'),
                         Icon(Icons.error)
                       ],
                     ),
@@ -135,10 +135,22 @@ class _RegisterFormState extends State<RegisterForm> {
                         autocorrect: false,
                         autovalidate: true,
                         validator: (_){
-                          return !state.isPasswordValid ? 'Invalid Password': null;
+                          return !state.isPasswordValid ? 'Contraseña invalida': null;
                         },
                       ),
                     ),
+                    /*Padding (
+                      padding: const EdgeInsets.only(top: 20),
+                      child: TextFormField(
+                        controller: _passwordController2,
+                        decoration: InputDecoration(hintText: "Contraseña"),
+                        obscureText: true,
+                        autocorrect: false,
+                        autovalidate: true,
+                        validator: (_){
+                        },
+                      ),
+                    ),*/
                     Padding (
                       padding: const EdgeInsets.only(top: 40),
                       child: RegisterButton(

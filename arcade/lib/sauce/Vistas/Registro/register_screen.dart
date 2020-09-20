@@ -2,7 +2,7 @@ import 'package:arcade/sauce/Vistas/Registro/register.dart';
 import 'package:arcade/sauce/bloc/register/reg_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:arcade/sauce/repository/User_repo.dart';
+import 'package:arcade/sauce/repository/User_Repo.dart';
 
 class RegisterScreen extends StatelessWidget {
   final UserRepo _userRepo;

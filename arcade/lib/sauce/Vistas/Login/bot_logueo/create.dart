@@ -1,5 +1,5 @@
 import 'package:arcade/sauce/Vistas/Registro/register_screen.dart';
-import 'package:arcade/sauce/repository/User_repo.dart';
+import 'package:arcade/sauce/repository/User_Repo.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccount extends StatelessWidget {

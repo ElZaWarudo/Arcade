@@ -40,8 +40,13 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+  fonts:
+    - family: Archery
+      fonts:
+        - asset: lib/assets/Archery Black Italic.ttf
   assets:
     - lib/assets/vintagearcade.png
+
 
   uses-material-design: true
 

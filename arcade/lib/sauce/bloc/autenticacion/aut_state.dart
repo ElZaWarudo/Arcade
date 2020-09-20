@@ -17,14 +17,14 @@ class NoInicializado extends AutState{
 
 //Autenticado
 class Autenticado extends AutState{
-  final String displayName;
-  const Autenticado(this.displayName);
+  final String Email;
+  const Autenticado(this.Email);
 
   @override
-  List<Object> get props => [displayName];
+  List<Object> get props => [Email];
 
   @override
-  String toString() => 'Autenticado -displayname:$displayName';
+  String toString() => 'Autenticado -displayname:$Email';
 }
 
 //NoAutenticado

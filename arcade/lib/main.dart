@@ -5,7 +5,7 @@ import 'package:arcade/sauce/bloc/autenticacion/aut_bloc.dart';
 import 'package:arcade/sauce/bloc/autenticacion/aut_event.dart';
 import 'package:arcade/sauce/bloc/autenticacion/aut_state.dart';
 import 'file:///C:/Users/Mayor/Documents/GitHub/Arcade/arcade/lib/sauce/bloc/delegates/reg_delegate.dart';
-import 'package:arcade/sauce/repository/User_repo.dart';
+import 'package:arcade/sauce/repository/User_Repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +42,7 @@ class App extends StatelessWidget {
             return SplashScreen();
           }
           if (state is Autenticado) {
-            return Home(name: state.displayName);
+            return Home(name: state.Email);
           }
           if (state is NoAutenticado) {
             return LoginScreen(userRepo: _userRepo,);

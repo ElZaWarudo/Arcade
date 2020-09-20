@@ -3,7 +3,7 @@ import 'package:arcade/sauce/bloc/autenticacion/aut_event.dart';
 import 'package:arcade/sauce/bloc/login/log_bloc.dart';
 import 'package:arcade/sauce/bloc/login/log_event.dart';
 import 'package:arcade/sauce/bloc/login/log_state.dart';
-import 'package:arcade/sauce/repository/User_repo.dart';
+import 'package:arcade/sauce/repository/User_Repo.dart';
 import 'package:flutter/material.dart';
 import 'package:arcade/sauce/bloc/autenticacion/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -89,6 +89,11 @@ class _LoginFormState extends State<LoginForm> {
               Image.asset(
                 'lib/assets/vintagearcade.png',
                 height: 300.0,
+              ),
+              Center(
+                child: Text('¡VArcade!',
+                  style: TextStyle(fontFamily: 'Archery', fontSize: 25),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 15),

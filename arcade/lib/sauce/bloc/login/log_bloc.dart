@@ -4,7 +4,7 @@ import 'package:arcade/util/validators.dart';
 import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:arcade/sauce/repository/User_repo.dart';
+import 'package:arcade/sauce/repository/User_Repo.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   UserRepo _userRepo;
