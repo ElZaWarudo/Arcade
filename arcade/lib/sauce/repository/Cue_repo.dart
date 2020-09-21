@@ -1,16 +1,17 @@
-import 'package:arcade/sauce/models/name.dart';
+import 'package:arcade/sauce/models/cuenta.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class NameRepo{
+class CueRepo{
   final String email;
   final databaseReference=FirebaseFirestore.instance;
 
-  NameRepo(this.email);
+  CueRepo(this.email);
 
-  Stream<List<Name>> getName(){
+  Stream<List<cuenta>> getCue(){
     return databaseReference.collection("Usuarios").where("Email", isEqualTo: email).snapshots()
         .map((snapshot){
-      return snapshot.docs.map((doc) => Name.fromSnapshot(doc)).toList();
+      return snapshot.docs.map((doc) => cuenta.fromSnapshot(doc)).toList();
     });
   }
+
 }

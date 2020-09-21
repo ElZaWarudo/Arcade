@@ -1,6 +1,6 @@
 import 'package:arcade/util/validators.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:arcade/sauce/bloc/register/reg.state.dart';
+import 'package:arcade/sauce/bloc/register/reg_state.dart';
 import 'package:arcade/sauce/bloc/register/reg_event.dart';
 import 'package:arcade/sauce/repository/User_Repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

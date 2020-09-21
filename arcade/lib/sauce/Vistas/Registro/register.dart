@@ -1,7 +1,7 @@
 import 'package:arcade/sauce/Vistas/Registro/Boton.dart';
 import 'package:arcade/sauce/bloc/autenticacion/bloc.dart';
 import 'package:arcade/sauce/bloc/register/bloc.dart';
-import 'package:arcade/sauce/bloc/register/reg.state.dart';
+import 'package:arcade/sauce/bloc/register/reg_state.dart';
 import 'package:arcade/sauce/bloc/register/reg_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -139,18 +139,6 @@ class _RegisterFormState extends State<RegisterForm> {
                         },
                       ),
                     ),
-                    /*Padding (
-                      padding: const EdgeInsets.only(top: 20),
-                      child: TextFormField(
-                        controller: _passwordController2,
-                        decoration: InputDecoration(hintText: "Contraseña"),
-                        obscureText: true,
-                        autocorrect: false,
-                        autovalidate: true,
-                        validator: (_){
-                        },
-                      ),
-                    ),*/
                     Padding (
                       padding: const EdgeInsets.only(top: 40),
                       child: RegisterButton(

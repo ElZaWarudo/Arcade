@@ -92,7 +92,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
               Center(
                 child: Text('¡VArcade!',
-                  style: TextStyle(fontFamily: 'Archery', fontSize: 25),
+                  style: TextStyle(fontFamily: 'Audiowide', fontSize: 25),
                 ),
               ),
               Padding(

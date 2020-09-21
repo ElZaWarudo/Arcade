@@ -1,7 +1,8 @@
-import 'package:arcade/sauce/bloc/name/bloc.dart';
-import 'package:arcade/sauce/models/name.dart';
+import 'package:arcade/sauce/bloc/cuenta/bloc.dart';
+import 'package:arcade/sauce/models/cuenta.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class UserImage extends StatefulWidget {
   @override
@@ -9,13 +10,13 @@ class UserImage extends StatefulWidget {
 }
 
 class _UserImageState extends State<UserImage> {
-  List<Name> NameList = [];
+  List<cuenta> NameList = [];
 
   _UserImageState();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NameBloc, NameState>(builder: (context, state) {
+    return BlocBuilder<CueBloc, CueState>(builder: (context, state) {
       if (state is SinUsername) {
         return CircularProgressIndicator();
       }

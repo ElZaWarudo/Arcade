@@ -33,6 +33,7 @@ dependencies:
   rxdart:
   flutter_webview_plugin:
   font_awesome_flutter:
+  cached_network_image:
   meta:
 
 dev_dependencies:
@@ -44,6 +45,9 @@ flutter:
     - family: Archery
       fonts:
         - asset: lib/assets/Archery Black Italic.ttf
+    - family: Audiowide
+      fonts:
+        - asset: lib/assets/Audiowide-Regular.ttf
   assets:
     - lib/assets/vintagearcade.png
 

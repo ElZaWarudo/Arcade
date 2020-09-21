@@ -1,24 +1,24 @@
-import 'package:arcade/sauce/models/name.dart';
+import 'package:arcade/sauce/models/cuenta.dart';
 import 'package:equatable/equatable.dart';
 
-abstract class NameState extends Equatable {
-  const NameState();
+abstract class CueState extends Equatable {
+  const CueState();
 
   @override
   List<Object> get props =>[];
 }
 
-class SinUsername extends NameState{
+class SinUsername extends CueState{
   String toString() => 'Obteniendo User';
 }
 
-class Fallo extends NameState {
+class Fallo extends CueState {
   @override
   String toString() => 'Fallo al cargar';
 }
 
-class Obtenido extends NameState {
-  final List<Name> name;
+class Obtenido extends CueState {
+  final List<cuenta> name;
 
   const Obtenido([this.name]);
 

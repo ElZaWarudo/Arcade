@@ -1,5 +1,5 @@
-import 'package:arcade/sauce/bloc/name/bloc.dart';
-import 'package:arcade/sauce/models/name.dart';
+import 'package:arcade/sauce/bloc/cuenta/bloc.dart';
+import 'package:arcade/sauce/models/cuenta.dart';
 import 'package:arcade/sauce/vistas/Home/UsuarioAlerta.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,13 +10,13 @@ class TextoNombre extends StatefulWidget {
 }
 
 class _TextoNombreState extends State<TextoNombre> {
-  List<Name> NameList = [];
+  List<cuenta> NameList = [];
 
   _TextoNombreState();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NameBloc, NameState>(builder: (context, state) {
+    return BlocBuilder<CueBloc, CueState>(builder: (context, state) {
       if (state is SinUsername) {
         return CircularProgressIndicator();
       }
