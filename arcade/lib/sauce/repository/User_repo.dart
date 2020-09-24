@@ -52,8 +52,9 @@ class UserRepo {
   }
 
   Future<bool> estaVerificado() async {
+    await _firebaseAuth.currentUser.reload();
     final verified = await _firebaseAuth.currentUser.emailVerified;
-    return verified != null;
+    return verified;
   }
 
   Future<bool> enviarEmail() async {

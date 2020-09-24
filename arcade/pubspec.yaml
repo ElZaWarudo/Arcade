@@ -49,7 +49,7 @@ flutter:
       fonts:
         - asset: lib/assets/Audiowide-Regular.ttf
   assets:
-    - lib/assets/vintagearcade.png
+    - lib/assets/varcade.png
 
 
   uses-material-design: true

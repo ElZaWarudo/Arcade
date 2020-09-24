@@ -27,7 +27,8 @@ class VeriBloc extends Bloc<VeriEvent, VeriState>{
   Stream<VeriState> _mapAppStartedToState() async*{
     try{
       final EstaVerificado  = await _userRepo.estaVerificado();
-      if(!EstaVerificado){
+      print(EstaVerificado);
+      if(EstaVerificado){
         yield await Verificado();
       }
       else {

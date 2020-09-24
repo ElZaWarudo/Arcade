@@ -27,8 +27,9 @@ class _TextoNombreState extends State<TextoNombre> {
         NameList = state.name;
         return Container(
           child: NameList.length == 0
-              ? Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => UsuarioAlerta()))
+              ? Container()
+          /*Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => UsuarioAlerta()))*/
               : Text(NameList[0].usuario),
         );
       }

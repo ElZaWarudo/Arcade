@@ -87,13 +87,8 @@ class _LoginFormState extends State<LoginForm> {
           child: Form(
             child: ListView(children: [
               Image.asset(
-                'lib/assets/vintagearcade.png',
+                'lib/assets/varcade.png',
                 height: 300.0,
-              ),
-              Center(
-                child: Text('¡VArcade!',
-                  style: TextStyle(fontFamily: 'Audiowide', fontSize: 25),
-                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 15),
