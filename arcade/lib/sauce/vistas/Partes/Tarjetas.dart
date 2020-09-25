@@ -1,9 +1,8 @@
 import 'package:arcade/sauce/bloc/juegos/jue_bloc.dart';
 import 'package:arcade/sauce/models/juegos.dart';
+import 'package:arcade/sauce/vistas/Puntajes/Screen_Tabla.dart';
 import 'package:arcade/sauce/vistas/WebGame.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -19,7 +18,6 @@ class Tarjetas extends StatefulWidget {
 class _TarjetasState extends State<Tarjetas> {
   String Nombre;
   List<Juego> juegosList = [];
-
 
   _TarjetasState(this.Nombre);
 
@@ -95,19 +93,27 @@ class _TarjetasState extends State<Tarjetas> {
               style: Theme.of(context).textTheme.subtitle1,
               textAlign: TextAlign.center,
             ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: RaisedButton(
-                child: Text('Jugar'),
-                color: Colors.deepPurple,
-                textColor: Colors.white,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => WebGame(Url, Nombre)),
-                  );
-                },
-              ),
+            RaisedButton(
+              child: Text('Jugar'),
+              color: Colors.deepPurple,
+              textColor: Colors.white,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WebGame(Url, Nombre)),
+                );
+              },
+            ),
+            RaisedButton(
+              child: Text('Records'),
+              color: Colors.deepPurple,
+              textColor: Colors.white,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TablaScreen()),
+                );
+              },
             ),
           ],
         ),

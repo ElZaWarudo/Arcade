@@ -7,6 +7,7 @@ import 'package:arcade/sauce/vistas/Config/configuracion.dart';
 import 'package:arcade/sauce/vistas/Partes/Tarjetas.dart';
 import 'package:arcade/sauce/vistas/Partes/TextoNombre.dart';
 import 'package:arcade/sauce/vistas/Partes/UserImage.dart';
+import 'package:arcade/sauce/vistas/Puntajes/Screen_Tabla.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -47,6 +48,10 @@ class Home extends StatelessWidget {
                 ),
                 ListTile(
                   title: Text('Records'),
+                    /*onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => TablaScreen()));
+                    }*/
                 ),
                 ListTile(
                     title: Text('Cuenta'),
