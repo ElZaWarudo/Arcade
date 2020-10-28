@@ -21,7 +21,7 @@ class TablaScreen extends StatelessWidget {
         ),
       ),
       body: BlocProvider<PuntBloc>(
-        create: (context) => PuntBloc(puntRepo: _puntRepo)..add(LoadPunt()),
+        create: (context) => PuntBloc(puntRepo: _puntRepo)..add(LoadPunt("CatastrofeEnElEspacio")),
         child: Tabla()
       ),
     );

@@ -1,7 +1,6 @@
 import 'package:arcade/sauce/bloc/juegos/jue_bloc.dart';
 import 'package:arcade/sauce/models/juegos.dart';
-import 'package:arcade/sauce/vistas/Puntajes/Screen_Tabla.dart';
-import 'package:arcade/sauce/vistas/WebGame.dart';
+import 'package:arcade/sauce/vistas/Partes/DatosJuego.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -46,8 +45,13 @@ class _TarjetasState extends State<Tarjetas> {
               ? Center(
                   child: Text('Aun no hay juegos'),
                 )
-              : ListView.builder(
+              : GridView.builder(
                   itemCount: juegosList.length,
+            gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 1,
+              mainAxisSpacing: 1
+            ),
                   itemBuilder: (_, index) {
                     return GameUI(
                         juegosList[index].nombre,
@@ -64,56 +68,37 @@ class _TarjetasState extends State<Tarjetas> {
 
   Widget GameUI(String nombre, String imagen, String descripcion, String Url) {
     return Card(
-      elevation: 10.0,
-      margin: EdgeInsets.all(14.0),
+      elevation: 3.0,
+      margin: EdgeInsets.all(2),
       child: Container(
-        padding: EdgeInsets.all(14.0),
+        padding: EdgeInsets.all(2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Stack(
               children: <Widget>[
-                Text(
-                  nombre,
-                  style: Theme.of(context).textTheme.subtitle2,
-                  textAlign: TextAlign.center,
+                GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DatosJuego(nombre,imagen,descripcion,Url, Nombre)),
+                      );
+                    },
+                  child: Image.network(
+                    imagen,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    nombre,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white, fontFamily: 'Audiowide',
+                        fontWeight: FontWeight.bold, fontSize: 14.0,),
+                  ),
                 ),
               ],
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Image.network(
-              imagen,
-              fit: BoxFit.cover,
-            ),
-            Text(
-              descripcion,
-              style: Theme.of(context).textTheme.subtitle1,
-              textAlign: TextAlign.center,
-            ),
-            RaisedButton(
-              child: Text('Jugar'),
-              color: Colors.deepPurple,
-              textColor: Colors.white,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => WebGame(Url, Nombre)),
-                );
-              },
-            ),
-            RaisedButton(
-              child: Text('Records'),
-              color: Colors.deepPurple,
-              textColor: Colors.white,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => TablaScreen()),
-                );
-              },
             ),
           ],
         ),

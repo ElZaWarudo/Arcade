@@ -15,7 +15,8 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Register'),),
+      appBar: AppBar(title: Text('Registro', style: TextStyle(fontFamily: 'Audiowide'),),
+        backgroundColor: Colors.deepPurple,),
       body: Center(
         child: BlocProvider<RegBloc>(
           create: (context) => RegBloc(userRepo: _userRepo),

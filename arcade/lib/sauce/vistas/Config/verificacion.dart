@@ -9,7 +9,6 @@ class Verificacion extends StatefulWidget {
 }
 
 class _VerificacionState extends State<Verificacion> {
-  final TextEditingController _codigoController = TextEditingController();
 
   VeriBloc _veriBloc;
 

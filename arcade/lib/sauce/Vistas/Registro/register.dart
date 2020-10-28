@@ -16,6 +16,7 @@ class _RegisterFormState extends State<RegisterForm> {
   // Dos variables
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordController2 = TextEditingController();
 
   RegBloc _regBloc;
 
@@ -97,20 +98,7 @@ class _RegisterFormState extends State<RegisterForm> {
                       padding: const EdgeInsets.only(top: 30),
                       child: Text('Crea tu cuenta',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30, color: Colors.deepPurple),
-                      ),
-                    ),
-                    Padding (
-                      padding: const EdgeInsets.only(top: 40),
-                      child: TextFormField(
-                        decoration: InputDecoration(hintText: "Nombre de usuario"),
-                      ),
-                    ),
-                    Padding (
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Text('Este sera el nombre que aparecera en la tabla de posiciones.',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(fontSize: 10, color: Colors.deepPurple),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30, color: Colors.deepPurple,fontFamily: 'Audiowide'),
                       ),
                     ),
                     Padding (
@@ -137,6 +125,16 @@ class _RegisterFormState extends State<RegisterForm> {
                         validator: (_){
                           return !state.isPasswordValid ? 'Contraseña invalida': null;
                         },
+                      ),
+                    ),
+                    Padding (
+                      padding: const EdgeInsets.only(top: 20),
+                      child: TextFormField(
+                        controller: _passwordController2,
+                        decoration: InputDecoration(hintText: "Repetir contraseña"),
+                        obscureText: true,
+                        autocorrect: false,
+                        autovalidate: true,
                       ),
                     ),
                     Padding (
@@ -169,11 +167,33 @@ class _RegisterFormState extends State<RegisterForm> {
   }
 
   void _onFormSubmitted() {
-    _regBloc.add(
-        Submitted(
-            email: _emailController.text,
-            password: _passwordController.text
-        )
+    if (_passwordController.text==_passwordController2.text){
+      _regBloc.add(
+          Submitted(
+              email: _emailController.text,
+              password: _passwordController.text
+          )
+      );
+    }else{
+      _ackAlert(context);
+    }
+  }
+  Future _ackAlert(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Las contraseñas no coinciden'),
+          actions: [
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

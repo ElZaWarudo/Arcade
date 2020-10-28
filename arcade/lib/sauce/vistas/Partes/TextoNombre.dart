@@ -1,6 +1,5 @@
 import 'package:arcade/sauce/bloc/cuenta/bloc.dart';
 import 'package:arcade/sauce/models/cuenta.dart';
-import 'package:arcade/sauce/vistas/Home/UsuarioAlerta.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,8 +27,6 @@ class _TextoNombreState extends State<TextoNombre> {
         return Container(
           child: NameList.length == 0
               ? Container()
-          /*Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => UsuarioAlerta()))*/
               : Text(NameList[0].usuario),
         );
       }

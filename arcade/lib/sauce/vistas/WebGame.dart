@@ -12,21 +12,26 @@ class WebGame extends StatefulWidget {
 }
 
 class _WebGameState extends State<WebGame> {
+  double width;
+  double height;
   String url, nombre;
 
   final flutterWebviewPlugin = new FlutterWebviewPlugin();
   _WebGameState(this.url, this.nombre);
 
-  @override
   void initState() {
-    flutterWebviewPlugin.launch(url, rect: new Rect.fromLTWH(0, 0, 645, 365));
-    Inyectar();
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+    flutterWebviewPlugin.launch(url, rect: new Rect.fromLTWH(0, 0, 645, 365));
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
+    flutterWebviewPlugin.resize(new Rect.fromLTWH(0, 0, width, height));
+    Inyectar();
     return WillPopScope(
       onWillPop: Regresar,
       child: Container(),
@@ -39,6 +44,7 @@ class _WebGameState extends State<WebGame> {
         if (viewState.type == WebViewState.finishLoad) {
           flutterWebviewPlugin
               .evalJavascript("function si() {return '$nombre';}");
+          /*function redim() {canvas.width = $width;canvas.height = $height;}*/
         }
       },
     );
