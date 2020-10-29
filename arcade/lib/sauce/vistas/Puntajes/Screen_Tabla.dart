@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TablaScreen extends StatelessWidget {
-  final PuntRepo _puntRepo= PuntRepo();
 
   TablaScreen({Key key})
       :super(key: key);
@@ -21,7 +20,7 @@ class TablaScreen extends StatelessWidget {
         ),
       ),
       body: BlocProvider<PuntBloc>(
-        create: (context) => PuntBloc(puntRepo: _puntRepo)..add(LoadPunt("CatastrofeEnElEspacio")),
+        create: (context) => PuntBloc(puntRepo: PuntRepo())..add(LoadPunt("CatastrofeEnElEspacio")),
         child: Tabla()
       ),
     );

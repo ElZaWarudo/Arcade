@@ -39,7 +39,7 @@ class _TablaState extends State<Tabla> {
           DataRow Add = DataRow(
             cells: [
               DataCell(Text(prop.jugador)),
-              DataCell(Text(prop.puntaje))
+              DataCell(Text(prop.puntaje.toString()))
             ]
           );
           Filas.add(Add);

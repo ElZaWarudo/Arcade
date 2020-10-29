@@ -5,25 +5,40 @@ import 'package:arcade/sauce/models/cuenta.dart';
 import 'package:arcade/sauce/repository/Exist_Repo.dart';
 import 'package:arcade/sauce/repository/Juego_repo.dart';
 import 'package:arcade/sauce/repository/Cue_repo.dart';
+import 'package:arcade/sauce/vistas/APIs/Ads.dart';
 import 'package:arcade/sauce/vistas/Config/configuracion.dart';
 import 'package:arcade/sauce/vistas/Partes/Tarjetas.dart';
 import 'package:arcade/sauce/vistas/Partes/Alerta.dart';
 import 'package:arcade/sauce/vistas/Partes/TextoNombre.dart';
 import 'package:arcade/sauce/vistas/Partes/UserImage.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  final String name;
+
+  Home(this.name);
+
+  @override
+  _HomeState createState() => _HomeState(name);
+}
+
+class _HomeState extends State<Home> {
   final String name;
   String id;
-  final JueRepo _jueRepo = JueRepo();
-  CueRepo cueRepo;
+  _HomeState(this.name);
 
-  Home({
-    Key key,
-    @required this.name,
-  })  : cueRepo = CueRepo(name),
-        super(key: key);
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +46,11 @@ class Home extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<JueBloc>(
-          create: (context) => JueBloc(jueRepo: _jueRepo)..add(LoadJue()),
+          create: (context) => JueBloc(jueRepo: JueRepo())..add(LoadJue()),
         ),
         BlocProvider<CueBloc>(
-          create: (context) => CueBloc(cueRepo: cueRepo)..add(BuscarName()),
+          create: (context) =>
+              CueBloc(cueRepo: CueRepo(name))..add(BuscarName()),
         ),
         BlocProvider<ExBloc>(
           create: (context) => ExBloc(exRepo: ExRepo()),
@@ -80,8 +96,8 @@ class Home extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                Configuracion(id,name)));
+                        builder: (context) => Configuracion(id, name),
+                    ),);
                   }),
             ],
           ),
@@ -95,7 +111,7 @@ class Home extends StatelessWidget {
                 return Container(
                   child: NameList.length == 0
                       ? Alerta(name)
-                      : Aceptado(NameList[0].id,NameList[0].usuario),
+                      : Aceptado(NameList[0].id, NameList[0].usuario),
                 );
               }
               return Container();
@@ -105,8 +121,10 @@ class Home extends StatelessWidget {
       ),
     );
   }
-  Widget Aceptado(String Id, String usuario){
-    id=Id;
+
+  Widget Aceptado(String Id, String usuario) {
+    id = Id;
     return Tarjetas(usuario);
   }
+
 }

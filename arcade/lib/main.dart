@@ -5,7 +5,9 @@ import 'package:arcade/sauce/bloc/autenticacion/aut_event.dart';
 import 'package:arcade/sauce/bloc/autenticacion/aut_state.dart';
 import 'file:///C:/Users/Mayor/Documents/GitHub/Arcade/arcade/lib/sauce/bloc/delegates/reg_delegate.dart';
 import 'package:arcade/sauce/repository/User_Repo.dart';
+import 'package:arcade/sauce/vistas/APIs/Ads.dart';
 import 'package:arcade/sauce/vistas/Home/HomeStf.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,19 +21,25 @@ Future <void>main() async{
   var app = BlocProvider(
     create: (context) => AutBloc(userRepo: userRepo)
       ..add(AppStarted()),
-    child: App(userRepo: userRepo),
+    child: App(),
   );
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(app);
 }
 
-class App extends StatelessWidget {
-  final UserRepo _userRepo;
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
 
-  App({Key key, @required UserRepo userRepo})
-      : assert (userRepo != null),
-        _userRepo = userRepo,
-        super(key: key);
+
+
+class _AppState extends State<App> {
+  @override
+  void initState() {
+    super.initState();
+    FirebaseAdMob.instance.initialize(appId: Ads.appId);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +53,7 @@ class App extends StatelessWidget {
             return HomeStf(state.Email);
           }
           if (state is NoAutenticado) {
-            return LoginScreen(userRepo: _userRepo,);
+            return LoginScreen(userRepo: UserRepo());
           }
           return Container(color: Colors.orange);
         },

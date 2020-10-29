@@ -21,7 +21,8 @@ class CueRepo{
         .add({
         'Email': email,
         'UrlImagen': "https://0.soompi.io/wp-content/uploads/sites/8/2016/02/14030437/mystery-Man-Soompi.jpg?s=900x600&e=t",
-        'Usuario': usuario
+        'Usuario': usuario,
+        'UsuarioLower': usuario.toLowerCase()
     });
   }
 

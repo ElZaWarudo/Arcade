@@ -36,7 +36,7 @@ class _HomeStfState extends State<HomeStf> {
   Widget build(BuildContext context) {
     return BlocProvider<CueBloc>(
         create: (context) => CueBloc(cueRepo: cueRepo)..add(BuscarName()),
-      child: Home(name: name,),
+      child: Home(name),
     );
   }
 

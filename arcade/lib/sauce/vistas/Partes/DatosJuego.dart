@@ -1,9 +1,13 @@
+import 'package:arcade/sauce/vistas/APIs/Ads.dart';
 import 'package:arcade/sauce/vistas/Puntajes/Screen_Tabla.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 
-import '../WebGame.dart';
+import '../APIs/WebGame.dart';
 
 class DatosJuego extends StatelessWidget {
+  InterstitialAd _interstitialAd;
+  bool _isInterstitialReady=false;
   String nombre, imagen, descripcion, Url, Jugador;
   final Color icon = Color(0xff522da8);
   final Color color1 = Color(0xff321b92);
@@ -14,6 +18,7 @@ class DatosJuego extends StatelessWidget {
       this.nombre, this.imagen, this.descripcion, this.Url, this.Jugador);
   @override
   Widget build(BuildContext context) {
+    LoadAdd(context);
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -98,11 +103,13 @@ class DatosJuego extends StatelessWidget {
                       side: BorderSide(color: Color(0xff683ab7))
                   ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => WebGame(Url, Jugador)),
-                      );
+                      LoadAdd(context);
+                      if(_isInterstitialReady==true){
+                        _interstitialAd.show();
+                        _interstitialAd=null;
+                      }else{
+                        _ToGame(context);
+                      }
                     },
                     icon: Icon(
                       Icons.play_arrow,
@@ -135,6 +142,34 @@ class DatosJuego extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void LoadAdd(BuildContext context){
+    _interstitialAd = InterstitialAd(
+        adUnitId: Ads.example,
+        listener: (MobileAdEvent event) {
+          switch (event) {
+            case MobileAdEvent.loaded:
+              _isInterstitialReady = true;
+              break;
+            case MobileAdEvent.failedToLoad:
+              _isInterstitialReady = false;
+              break;
+            case MobileAdEvent.closed:
+              _ToGame(context);
+              break;
+            default:
+          }
+        });
+    _interstitialAd.load();
+  }
+
+  _ToGame(BuildContext context){
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => WebGame(Url, Jugador)),
     );
   }
 }

@@ -37,6 +37,7 @@ dependencies:
   meta:
   image_picker:
   firebase_storage:
+  firebase_admob:
 
 dev_dependencies:
   flutter_launcher_icons:

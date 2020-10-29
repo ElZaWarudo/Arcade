@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Score{
-  final String id, jugador, puntaje;
+  final String id, jugador;
+  final int puntaje;
 
 
   Score(this.id, this.jugador, this.puntaje);

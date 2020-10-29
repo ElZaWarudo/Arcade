@@ -9,6 +9,9 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="VArcade"
         android:icon="@mipmap/launcher_icon">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-7416244191035936~9716873650"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

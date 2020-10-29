@@ -43,7 +43,10 @@ class _VerificacionState extends State<Verificacion> {
             title: Text("Email enviado")
         );
       }
-      return Container(width:50,height: 50);
+      return ListTile(
+          leading: Icon(FontAwesomeIcons.envelope),
+          title: Text(". . .", style: TextStyle(fontSize: 20),)
+      );
     });
   }
 }

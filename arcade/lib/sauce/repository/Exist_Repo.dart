@@ -5,7 +5,7 @@ class ExRepo{
   final databaseReference=FirebaseFirestore.instance;
 
   Stream<List<cuenta>> getUser(String user){
-    return databaseReference.collection("Usuarios").where("Usuario", isEqualTo: user).snapshots()
+    return databaseReference.collection("Usuarios").where("UsuarioLower", isEqualTo: user.toLowerCase()).snapshots()
         .map((snapshot){
       return snapshot.docs.map((doc) => cuenta.fromSnapshot(doc)).toList();
     });
