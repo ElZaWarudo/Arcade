@@ -7,7 +7,7 @@ import '../APIs/WebGame.dart';
 
 class DatosJuego extends StatelessWidget {
   InterstitialAd _interstitialAd;
-  bool _isInterstitialReady=false;
+  bool _isInterstitialReady = false;
   String nombre, imagen, descripcion, Url, Jugador;
   final Color icon = Color(0xff522da8);
   final Color color1 = Color(0xff321b92);
@@ -50,31 +50,31 @@ class DatosJuego extends StatelessWidget {
                           bottomRight: Radius.circular(50.0))),
                 )),
             Positioned(
-              top: 350,
+              top: 330,
               left: 0,
               right: 0,
               child: Container(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    SizedBox(height: 40.0),
+                    SizedBox(height: 37.0),
                     Text(
-                      nombre.toUpperCase(), textAlign: TextAlign.center,
+                      nombre,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
-                          fontSize: 30.0),
+                          fontSize: 25.0,
+                          fontFamily: 'Lemonmilk'),
                     ),
-                    SizedBox(height: 20.0),
-                    Text(
-                      descripcion,
-                      style: TextStyle(color: Colors.white70),
-                    ),
-                    SizedBox(height: 50.0),
-                    SizedBox(
-                      height: 30.0,
-                      width: double.infinity,
+                    SizedBox(height: 10.0),
+                    Container(
+                      height: 130,
+                      child: SingleChildScrollView(
+                        child: Text(descripcion,
+                          style: TextStyle(color: Colors.white, fontFamily: 'OpenSans'),
+                        ),
+                      ),
                     )
                   ],
                 ),
@@ -95,36 +95,40 @@ class DatosJuego extends StatelessWidget {
               ),
             ),
             Positioned(
-                top: 325,
-                left: 20,
-                child: RaisedButton.icon(
+              top: 325,
+              left: 20,
+              child: RaisedButton.icon(
+                  color: Color(0xff0D0430),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                      side: BorderSide(color: Color(0xff683ab7))
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
-                    onPressed: () {
-                      LoadAdd(context);
-                      if(_isInterstitialReady==true){
-                        _interstitialAd.show();
-                        _interstitialAd=null;
-                      }else{
-                        _ToGame(context);
-                      }
-                    },
-                    icon: Icon(
-                      Icons.play_arrow,
-                    ),
-                    label: Text("Jugar")),
+                  onPressed: () {
+                    if (_isInterstitialReady == true) {
+                      _interstitialAd.show();
+                      _interstitialAd = null;
+                    } else {
+                      _ToGame(context);
+                    }
+                  },
+                  icon: Icon(
+                    Icons.play_arrow,
+                    color: Colors.white,
+                  ),
+                  label: Text("Jugar",
+                      style: TextStyle(
+                          color: Colors.white, fontFamily: 'Lemonmilk'))),
             ),
             Positioned(
               top: 325,
               right: 20,
               child: RaisedButton(
-                child: Text("Records".toUpperCase()),
+                color: Color(0xff0D0430),
+                child:
+                    Text("RECORDS", style: TextStyle(color: Colors.white, fontFamily: 'Lemonmilk')),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                    side: BorderSide(color: Color(0xff683ab7))),
-                onPressed: (){
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => TablaScreen()),
@@ -133,11 +137,11 @@ class DatosJuego extends StatelessWidget {
               ),
             ),
             Container(
-                height: 70.0,
-                child: AppBar(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                ),
+              height: 70.0,
+              child: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+              ),
             ),
           ],
         ),
@@ -145,9 +149,9 @@ class DatosJuego extends StatelessWidget {
     );
   }
 
-  void LoadAdd(BuildContext context){
+  void LoadAdd(BuildContext context) {
     _interstitialAd = InterstitialAd(
-        adUnitId: Ads.example,
+        adUnitId: Ads.instertsticial,
         listener: (MobileAdEvent event) {
           switch (event) {
             case MobileAdEvent.loaded:
@@ -165,11 +169,11 @@ class DatosJuego extends StatelessWidget {
     _interstitialAd.load();
   }
 
-  _ToGame(BuildContext context){
-    Navigator.push(
+  _ToGame(BuildContext context) async {
+    final result = Navigator.push(
       context,
-      MaterialPageRoute(
-          builder: (context) => WebGame(Url, Jugador)),
+      MaterialPageRoute(builder: (context) => WebGame(Url, Jugador)),
     );
+    LoadAdd(context);
   }
 }

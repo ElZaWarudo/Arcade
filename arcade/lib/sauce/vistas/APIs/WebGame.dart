@@ -22,7 +22,8 @@ class _WebGameState extends State<WebGame> {
   void initState() {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
-    flutterWebviewPlugin.launch(url, rect: new Rect.fromLTWH(0, 0, 645, 365));
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    flutterWebviewPlugin.launch(url, withJavascript: true, rect: new Rect.fromLTWH(0, 0, 645, 365), clearCache: true);
     super.initState();
   }
 
@@ -43,8 +44,7 @@ class _WebGameState extends State<WebGame> {
       (viewState) async {
         if (viewState.type == WebViewState.finishLoad) {
           flutterWebviewPlugin
-              .evalJavascript("function si() {return '$nombre';}");
-          /*function redim() {canvas.width = $width;canvas.height = $height;}*/
+              .evalJavascript("function si() {return '$nombre';} function width() {return $width;} function height() {return $height;} redim();");
         }
       },
     );
@@ -53,6 +53,7 @@ class _WebGameState extends State<WebGame> {
   Future<bool> Regresar() async{
     flutterWebviewPlugin.close();
     flutterWebviewPlugin.dispose();
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     Navigator.pop(context);
   }

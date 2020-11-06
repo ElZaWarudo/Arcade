@@ -57,6 +57,12 @@ flutter:
     - family: Audiowide
       fonts:
         - asset: lib/assets/Audiowide-Regular.ttf
+    - family: Lemonmilk
+      fonts:
+        - asset: lib/assets/LEMONMILK-BoldItalic.otf
+    - family: OpenSans
+      fonts:
+        - asset: lib/assets/OpenSans-SemiBold.ttf
   assets:
     - lib/assets/varcade.png
 

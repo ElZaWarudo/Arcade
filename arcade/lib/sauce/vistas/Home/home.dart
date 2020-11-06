@@ -5,13 +5,11 @@ import 'package:arcade/sauce/models/cuenta.dart';
 import 'package:arcade/sauce/repository/Exist_Repo.dart';
 import 'package:arcade/sauce/repository/Juego_repo.dart';
 import 'package:arcade/sauce/repository/Cue_repo.dart';
-import 'package:arcade/sauce/vistas/APIs/Ads.dart';
 import 'package:arcade/sauce/vistas/Config/configuracion.dart';
 import 'package:arcade/sauce/vistas/Partes/Tarjetas.dart';
 import 'package:arcade/sauce/vistas/Partes/Alerta.dart';
 import 'package:arcade/sauce/vistas/Partes/TextoNombre.dart';
 import 'package:arcade/sauce/vistas/Partes/UserImage.dart';
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -83,7 +81,7 @@ class _HomeState extends State<Home> {
                   decoration: BoxDecoration(color: Colors.deepPurple),
                   currentAccountPicture: UserImage()),
               ListTile(
-                title: Text('Records'),
+                title: Text('Records (proximamente)', style: TextStyle(color: Colors.grey)),
                 /*onTap: (){
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => TablaScreen()));
@@ -103,6 +101,13 @@ class _HomeState extends State<Home> {
           ),
         ),
         body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xff683ab7),Color(0xff683ab7),Color(0xff334db2),Color(0xff3955bc)]
+            ),
+          ),
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: BlocBuilder<CueBloc, CueState>(
             builder: (context, state) {
