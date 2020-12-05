@@ -30,7 +30,6 @@ class DatosJuego extends StatelessWidget {
                 right: 0,
                 bottom: 0,
                 child: Container(
-                  height: 200,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
                           colors: [color2, color3],
@@ -43,7 +42,6 @@ class DatosJuego extends StatelessWidget {
                 right: 150,
                 bottom: 80,
                 child: Container(
-                  height: 200,
                   decoration: BoxDecoration(
                       color: color1,
                       borderRadius: BorderRadius.only(
@@ -53,11 +51,13 @@ class DatosJuego extends StatelessWidget {
               top: 330,
               left: 0,
               right: 0,
+              bottom: 1,
               child: Container(
                 padding: const EdgeInsets.all(16.0),
-                child: Column(
+                child: ListView(
+                  shrinkWrap: true,
                   children: <Widget>[
-                    SizedBox(height: 37.0),
+                    SizedBox(height: 22.0),
                     Text(
                       nombre,
                       textAlign: TextAlign.center,
@@ -68,14 +68,14 @@ class DatosJuego extends StatelessWidget {
                           fontFamily: 'Lemonmilk'),
                     ),
                     SizedBox(height: 10.0),
-                    Container(
-                      height: 130,
-                      child: SingleChildScrollView(
-                        child: Text(descripcion,
-                          style: TextStyle(color: Colors.white, fontFamily: 'OpenSans'),
-                        ),
+                    LimitedBox(
+                      maxHeight: 300,
+                      child: Text(
+                        descripcion,
+                        style: TextStyle(
+                            color: Colors.white, fontFamily: 'OpenSans'),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -123,8 +123,9 @@ class DatosJuego extends StatelessWidget {
               right: 20,
               child: RaisedButton(
                 color: Color(0xff0D0430),
-                child:
-                    Text("RECORDS", style: TextStyle(color: Colors.white, fontFamily: 'Lemonmilk')),
+                child: Text("RECORDS",
+                    style: TextStyle(
+                        color: Colors.white, fontFamily: 'Lemonmilk')),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0),
                 ),

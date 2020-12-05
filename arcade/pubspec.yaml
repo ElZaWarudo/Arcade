@@ -38,6 +38,7 @@ dependencies:
   image_picker:
   firebase_storage:
   firebase_admob:
+  geolocator:
 
 dev_dependencies:
   flutter_launcher_icons:

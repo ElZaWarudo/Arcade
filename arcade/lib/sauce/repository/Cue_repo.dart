@@ -36,10 +36,10 @@ class CueRepo{
 
   Future<void> ChangeImage(File image, String email, String id) async {
     // Save image
-    final StorageReference postImageRef = FirebaseStorage().ref().child("Imagenes usuarios");
-    final StorageUploadTask uploadTask =
+    final Reference postImageRef = FirebaseStorage.instance.ref().child("Imagenes usuarios");
+    final UploadTask uploadTask =
     postImageRef.child("$email.jpg").putFile(image);
-    var imageUrl = await (await uploadTask.onComplete).ref.getDownloadURL();
+    var imageUrl = await (await uploadTask).ref.getDownloadURL();
     var url = imageUrl.toString();
     databaseReference.doc(id).update({'UrlImagen': url});
   }

@@ -10,9 +10,7 @@ class Tabla extends StatefulWidget {
 }
 
 class _TablaState extends State<Tabla> {
-
   List<Score> scoresList = [];
-
 
   @override
   Widget build(BuildContext context) {
@@ -33,30 +31,78 @@ class _TablaState extends State<Tabla> {
         );
       }
       if (state is ScoresLoaded) {
+        int cant = 1;
         scoresList = state.scores;
         List<DataRow> Filas = new List<DataRow>();
-        for(var prop in scoresList){
-          DataRow Add = DataRow(
-            cells: [
-              DataCell(Text(prop.jugador)),
-              DataCell(Text(prop.puntaje.toString()))
-            ]
-          );
+        for (var prop in scoresList) {
+          DataRow Add = DataRow(cells: [
+            DataCell(
+              Text(
+                " $cant",
+                style: TextStyle(
+                    fontFamily: 'OpenSans', color: Colors.white, fontSize: 17),
+              ),
+            ),
+            DataCell(
+              Text(
+                prop.jugador,
+                style: TextStyle(
+                    fontFamily: 'OpenSans', color: Colors.white, fontSize: 14),
+              ),
+            ),
+            DataCell(
+              Text(
+                prop.puntaje.toString(),
+                style: TextStyle(
+                    fontFamily: 'OpenSans', color: Colors.white, fontSize: 15),
+              ),
+            ),
+          ]);
+          cant++;
           Filas.add(Add);
         }
         return Container(
           child: scoresList.length == 0
               ? Center(
-              child: Text('Aun no hay Puntajes'),
-              )
-              :
-          DataTable(
-            columns: [
-              DataColumn(label: Text('Jugador')),
-              DataColumn(label: Text('Puntaje'))
-            ],
-            rows: Filas,
-          )
+                  child: Text('Aun no hay Puntajes'),
+                )
+              : ListView(
+                  shrinkWrap: true,
+                  children: [
+                    DataTable(
+                      columns: [
+                        DataColumn(
+                          label: Text(
+                            'Posición',
+                            style: TextStyle(
+                                fontFamily: 'Lemonmilk',
+                                color: Colors.white,
+                                fontSize: 11),
+                          ),
+                        ),
+                        DataColumn(
+                          label: Text(
+                            'Jugador',
+                            style: TextStyle(
+                                fontFamily: 'Lemonmilk',
+                                color: Colors.white,
+                                fontSize: 11),
+                          ),
+                        ),
+                        DataColumn(
+                          label: Text(
+                            'Puntaje',
+                            style: TextStyle(
+                                fontFamily: 'Lemonmilk',
+                                color: Colors.white,
+                                fontSize: 11),
+                          ),
+                        )
+                      ],
+                      rows: Filas,
+                    )
+                  ],
+                ),
         );
       }
       return Container();

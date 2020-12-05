@@ -12,6 +12,7 @@ import 'package:arcade/sauce/vistas/Partes/TextoNombre.dart';
 import 'package:arcade/sauce/vistas/Partes/UserImage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 
 class Home extends StatefulWidget {
   final String name;
@@ -23,6 +24,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Position position;
   final String name;
   String id;
   _HomeState(this.name);
@@ -32,6 +34,7 @@ class _HomeState extends State<Home> {
     // TODO: implement initState
     super.initState();
   }
+
 
   @override
   void dispose() {
@@ -61,7 +64,7 @@ class _HomeState extends State<Home> {
             style: TextStyle(fontFamily: 'Audiowide'),
           ),
           backgroundColor: Colors.deepPurple,
-          actions: <Widget>[
+          /*actions: <Widget>[
             IconButton(
               icon: const Icon(
                 Icons.search,
@@ -69,7 +72,7 @@ class _HomeState extends State<Home> {
               ),
               onPressed: () {},
             ),
-          ],
+          ],*/
         ),
         drawer: Drawer(
           child: ListView(

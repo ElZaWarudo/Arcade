@@ -1,6 +1,7 @@
 import 'package:arcade/sauce/bloc/juegos/jue_bloc.dart';
 import 'package:arcade/sauce/models/juegos.dart';
 import 'package:arcade/sauce/vistas/APIs/Ads.dart';
+import 'package:arcade/sauce/vistas/Apoyo/ApoyoTarjeta.dart';
 import 'package:arcade/sauce/vistas/Partes/DatosJuego.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/cupertino.dart';
@@ -67,7 +68,6 @@ class _TarjetasState extends State<Tarjetas> {
     _interstitialAd.load();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<JueBloc, JueState>(builder: (context, state) {
@@ -87,6 +87,7 @@ class _TarjetasState extends State<Tarjetas> {
         );
       }
       if (state is GamesLoaded) {
+        int counter = 0;
         juegosList = state.juegos;
         return Container(
           child: juegosList.length == 0
@@ -94,27 +95,32 @@ class _TarjetasState extends State<Tarjetas> {
                   child: Text('Aun no hay juegos'),
                 )
               : ListView.builder(
-                  itemCount: juegosList.length,
+                  itemCount: juegosList.length + 1,
                   itemBuilder: (_, index) {
-                    return GameUI(
-                        juegosList[index].nombre,
-                        juegosList[index].url,
-                        juegosList[index].descripcion,
-                        juegosList[index].UrlJuego);
+                    if (counter != juegosList.length) {
+                      counter++;
+                      return GameUI(
+                          juegosList[index].nombre,
+                          juegosList[index].url,
+                          juegosList[index].descripcion,
+                          juegosList[index].UrlJuego);
+                    } else {
+                      return ApoyoTarjeta();
+                    }
                   },
                 ),
         );
       }
-      return Container();
+      return ApoyoTarjeta();
     });
   }
 
-  _toInfo(String nombre, String imagen, String descripcion, String Url) async{
+  _toInfo(String nombre, String imagen, String descripcion, String Url) async {
     final espera = await Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) =>
-              DatosJuego(nombre, imagen, descripcion, Url, Nombre),
+        builder: (context) =>
+            DatosJuego(nombre, imagen, descripcion, Url, Nombre),
       ),
     );
     LoadAdd();
@@ -163,7 +169,8 @@ class _TarjetasState extends State<Tarjetas> {
         child: new Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            new Text(nombre, style: TextStyle(color: Colors.white,fontFamily: 'Lemonmilk')),
+            new Text(nombre,
+                style: TextStyle(color: Colors.white, fontFamily: 'Lemonmilk')),
             /*---------------------*/
             new Container(
                 color: Colors.white,
@@ -187,8 +194,15 @@ class _TarjetasState extends State<Tarjetas> {
                         _toInfo(nombre, imagen, descripcion, Url);
                       }
                     },
-                    icon: Icon((Iconos.toList()..shuffle()).first, color: Colors.white,),
-                    label: Text(" Información", style: TextStyle(fontFamily: 'Lemonmilk', color: Colors.white)),
+                    icon: Icon(
+                      (Iconos.toList()..shuffle()).first,
+                      color: Colors.white,
+                    ),
+                    label: Text(
+                      " Información",
+                      style: TextStyle(
+                          fontFamily: 'Lemonmilk', color: Colors.white),
+                    ),
                   ),
                 ),
               ),
@@ -200,7 +214,7 @@ class _TarjetasState extends State<Tarjetas> {
 
     return new Container(
       height: 120.0,
-      margin: const EdgeInsets.only(top: 16.0, bottom: 8.0),
+      margin: const EdgeInsets.only(top: 8.0, bottom: 3),
       child: new Container(
         child: new Stack(
           children: <Widget>[
@@ -211,6 +225,7 @@ class _TarjetasState extends State<Tarjetas> {
       ),
     );
   }
+
   Future<void> LoadAdd() async {
     _interstitialAd = InterstitialAd(
         adUnitId: Ads.instertsticial,

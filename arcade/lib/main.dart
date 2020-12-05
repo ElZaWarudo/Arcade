@@ -53,7 +53,7 @@ class _AppState extends State<App> {
             return HomeStf(state.Email);
           }
           if (state is NoAutenticado) {
-            return LoginScreen(userRepo: UserRepo());
+            return LoginScreen();
           }
           return Container(color: Colors.orange);
         },

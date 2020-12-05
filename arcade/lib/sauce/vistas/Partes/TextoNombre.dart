@@ -27,7 +27,7 @@ class _TextoNombreState extends State<TextoNombre> {
         return Container(
           child: NameList.length == 0
               ? Container()
-              : Text(NameList[0].usuario, style: TextStyle(fontFamily: 'Lemonmilk')),
+              : Text(NameList[0].usuario, style: TextStyle(fontFamily: 'OpenSans')),
         );
       }
       return Container();

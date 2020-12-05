@@ -7,7 +7,6 @@ import 'package:arcade/sauce/repository/User_Repo.dart';
 import 'package:flutter/material.dart';
 import 'package:arcade/sauce/bloc/autenticacion/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'bot_logueo/google.dart';
 import 'bot_logueo/login.dart';
@@ -83,7 +82,7 @@ class _LoginFormState extends State<LoginForm> {
     }, child: BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         return Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(15.0),
           child: Form(
             child: ListView(children: [
               Image.asset(
@@ -91,10 +90,10 @@ class _LoginFormState extends State<LoginForm> {
                 height: 300.0,
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 15),
+                padding: const EdgeInsets.only(top: 4),
                 child: GoogleLoginButton(),
               ),
-              Padding(
+              /*Padding(
                 padding: const EdgeInsets.only(top: 15),
                 child: RaisedButton(
                   color: Colors.indigo,
@@ -111,7 +110,7 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                   onPressed: () {},
                 ),
-              ),
+              ),*/
               Padding(
                 padding: const EdgeInsets.only(top: 40),
                 child: TextFormField(

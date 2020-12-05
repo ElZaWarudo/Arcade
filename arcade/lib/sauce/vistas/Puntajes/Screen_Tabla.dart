@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TablaScreen extends StatelessWidget {
-
-  TablaScreen({Key key})
-      :super(key: key);
+  TablaScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +17,24 @@ class TablaScreen extends StatelessWidget {
           'Records',
         ),
       ),
-      body: BlocProvider<PuntBloc>(
-        create: (context) => PuntBloc(puntRepo: PuntRepo())..add(LoadPunt("CatastrofeEnElEspacio")),
-        child: Tabla()
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xff683ab7),
+                Color(0xff683ab7),
+                Color(0xff334db2),
+                Color(0xff3955bc)
+              ]),
+        ),
+        child: BlocProvider<PuntBloc>(
+            create: (context) => PuntBloc(puntRepo: PuntRepo())
+              ..add(LoadPunt("CatastrofeEnElEspacio")),
+            child: Tabla()),
       ),
     );
   }
